@@ -16,13 +16,13 @@ describe('Pool', () => {
   describe('constructor', () => {
     it('cannot be used for tokens on different chains', () => {
       expect(() => {
-        new Pool(USDC, WETH9[3], FeeAmount.MEDIUM, encodeSqrtRatioX96(1, 1), 0, 0, [])
+        new Pool(USDC, WETH9[3], FeeAmount.THIRTY, encodeSqrtRatioX96(1, 1), 0, 0, [])
       }).toThrow('CHAIN_IDS')
     })
 
     it('fee must be integer', () => {
       expect(() => {
-        new Pool(USDC, WETH9[1], FeeAmount.MEDIUM + 0.5, encodeSqrtRatioX96(1, 1), 0, 0, [])
+        new Pool(USDC, WETH9[1], FeeAmount.THIRTY + 0.5, encodeSqrtRatioX96(1, 1), 0, 0, [])
       }).toThrow('FEE')
     })
 
@@ -34,56 +34,56 @@ describe('Pool', () => {
 
     it('cannot be given two of the same token', () => {
       expect(() => {
-        new Pool(USDC, USDC, FeeAmount.MEDIUM, encodeSqrtRatioX96(1, 1), 0, 0, [])
+        new Pool(USDC, USDC, FeeAmount.THIRTY, encodeSqrtRatioX96(1, 1), 0, 0, [])
       }).toThrow('ADDRESSES')
     })
 
     it('price must be within tick price bounds', () => {
       expect(() => {
-        new Pool(USDC, WETH9[1], FeeAmount.MEDIUM, encodeSqrtRatioX96(1, 1), 0, 1, [])
+        new Pool(USDC, WETH9[1], FeeAmount.THIRTY, encodeSqrtRatioX96(1, 1), 0, 1, [])
       }).toThrow('PRICE_BOUNDS')
       expect(() => {
-        new Pool(USDC, WETH9[1], FeeAmount.MEDIUM, JSBI.add(encodeSqrtRatioX96(1, 1), JSBI.BigInt(1)), 0, -1, [])
+        new Pool(USDC, WETH9[1], FeeAmount.THIRTY, JSBI.add(encodeSqrtRatioX96(1, 1), JSBI.BigInt(1)), 0, -1, [])
       }).toThrow('PRICE_BOUNDS')
     })
 
     it('works with valid arguments for empty pool medium fee', () => {
-      new Pool(USDC, WETH9[1], FeeAmount.MEDIUM, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      new Pool(USDC, WETH9[1], FeeAmount.THIRTY, encodeSqrtRatioX96(1, 1), 0, 0, [])
     })
 
     it('works with valid arguments for empty pool low fee', () => {
-      new Pool(USDC, WETH9[1], FeeAmount.LOW, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      new Pool(USDC, WETH9[1], FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), 0, 0, [])
     })
 
     it('works with valid arguments for empty pool lowest fee', () => {
-      new Pool(USDC, WETH9[1], FeeAmount.LOWEST, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      new Pool(USDC, WETH9[1], FeeAmount.ONE, encodeSqrtRatioX96(1, 1), 0, 0, [])
     })
 
     it('works with valid arguments for empty pool high fee', () => {
-      new Pool(USDC, WETH9[1], FeeAmount.HIGH, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      new Pool(USDC, WETH9[1], FeeAmount.ONE_HUNDRED, encodeSqrtRatioX96(1, 1), 0, 0, [])
     })
   })
 
   describe('#getAddress', () => {
     it('matches an example', () => {
-      const result = Pool.getAddress(USDC, DAI, FeeAmount.LOW)
+      const result = Pool.getAddress(USDC, DAI, FeeAmount.FIVE)
       expect(result).toEqual('0x6c6Bc977E13Df9b0de53b251522280BB72383700')
     })
   })
 
   describe('#token0', () => {
     it('always is the token that sorts before', () => {
-      let pool = new Pool(USDC, DAI, FeeAmount.LOW, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      let pool = new Pool(USDC, DAI, FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), 0, 0, [])
       expect(pool.token0).toEqual(DAI)
-      pool = new Pool(DAI, USDC, FeeAmount.LOW, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      pool = new Pool(DAI, USDC, FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), 0, 0, [])
       expect(pool.token0).toEqual(DAI)
     })
   })
   describe('#token1', () => {
     it('always is the token that sorts after', () => {
-      let pool = new Pool(USDC, DAI, FeeAmount.LOW, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      let pool = new Pool(USDC, DAI, FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), 0, 0, [])
       expect(pool.token1).toEqual(USDC)
-      pool = new Pool(DAI, USDC, FeeAmount.LOW, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      pool = new Pool(DAI, USDC, FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), 0, 0, [])
       expect(pool.token1).toEqual(USDC)
     })
   })
@@ -94,7 +94,7 @@ describe('Pool', () => {
         new Pool(
           USDC,
           DAI,
-          FeeAmount.LOW,
+          FeeAmount.FIVE,
           encodeSqrtRatioX96(101e6, 100e18),
           0,
           TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(101e6, 100e18)),
@@ -105,7 +105,7 @@ describe('Pool', () => {
         new Pool(
           DAI,
           USDC,
-          FeeAmount.LOW,
+          FeeAmount.FIVE,
           encodeSqrtRatioX96(101e6, 100e18),
           0,
           TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(101e6, 100e18)),
@@ -121,7 +121,7 @@ describe('Pool', () => {
         new Pool(
           USDC,
           DAI,
-          FeeAmount.LOW,
+          FeeAmount.FIVE,
           encodeSqrtRatioX96(101e6, 100e18),
           0,
           TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(101e6, 100e18)),
@@ -132,7 +132,7 @@ describe('Pool', () => {
         new Pool(
           DAI,
           USDC,
-          FeeAmount.LOW,
+          FeeAmount.FIVE,
           encodeSqrtRatioX96(101e6, 100e18),
           0,
           TickMath.getTickAtSqrtRatio(encodeSqrtRatioX96(101e6, 100e18)),
@@ -143,7 +143,7 @@ describe('Pool', () => {
   })
 
   describe('#priceOf', () => {
-    const pool = new Pool(USDC, DAI, FeeAmount.LOW, encodeSqrtRatioX96(1, 1), 0, 0, [])
+    const pool = new Pool(USDC, DAI, FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), 0, 0, [])
     it('returns price of token in terms of other token', () => {
       expect(pool.priceOf(DAI)).toEqual(pool.token0Price)
       expect(pool.priceOf(USDC)).toEqual(pool.token1Price)
@@ -156,15 +156,15 @@ describe('Pool', () => {
 
   describe('#chainId', () => {
     it('returns the token0 chainId', () => {
-      let pool = new Pool(USDC, DAI, FeeAmount.LOW, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      let pool = new Pool(USDC, DAI, FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), 0, 0, [])
       expect(pool.chainId).toEqual(1)
-      pool = new Pool(DAI, USDC, FeeAmount.LOW, encodeSqrtRatioX96(1, 1), 0, 0, [])
+      pool = new Pool(DAI, USDC, FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), 0, 0, [])
       expect(pool.chainId).toEqual(1)
     })
   })
 
   describe('#involvesToken', () => {
-    const pool = new Pool(USDC, DAI, FeeAmount.LOW, encodeSqrtRatioX96(1, 1), 0, 0, [])
+    const pool = new Pool(USDC, DAI, FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), 0, 0, [])
     expect(pool.involvesToken(USDC)).toEqual(true)
     expect(pool.involvesToken(DAI)).toEqual(true)
     expect(pool.involvesToken(WETH9[1])).toEqual(false)
@@ -174,14 +174,14 @@ describe('Pool', () => {
     let pool: Pool
 
     beforeEach(() => {
-      pool = new Pool(USDC, DAI, FeeAmount.LOW, encodeSqrtRatioX96(1, 1), ONE_ETHER, 0, [
+      pool = new Pool(USDC, DAI, FeeAmount.FIVE, encodeSqrtRatioX96(1, 1), ONE_ETHER, 0, [
         {
-          index: nearestUsableTick(TickMath.MIN_TICK, TICK_SPACINGS[FeeAmount.LOW]),
+          index: nearestUsableTick(TickMath.MIN_TICK, TICK_SPACINGS[FeeAmount.FIVE]),
           liquidityNet: ONE_ETHER,
           liquidityGross: ONE_ETHER,
         },
         {
-          index: nearestUsableTick(TickMath.MAX_TICK, TICK_SPACINGS[FeeAmount.LOW]),
+          index: nearestUsableTick(TickMath.MAX_TICK, TICK_SPACINGS[FeeAmount.FIVE]),
           liquidityNet: JSBI.multiply(ONE_ETHER, NEGATIVE_ONE),
           liquidityGross: ONE_ETHER,
         },
@@ -226,14 +226,14 @@ describe('Pool', () => {
     const bigNum1 = JSBI.add(JSBI.BigInt(Number.MAX_SAFE_INTEGER), JSBI.BigInt(1))
     const bigNum2 = JSBI.add(JSBI.BigInt(Number.MAX_SAFE_INTEGER), JSBI.BigInt(1))
     beforeEach(() => {
-      pool = new Pool(USDC, DAI, FeeAmount.LOW, encodeSqrtRatioX96(bigNum1, bigNum2), ONE_ETHER, 0, [
+      pool = new Pool(USDC, DAI, FeeAmount.FIVE, encodeSqrtRatioX96(bigNum1, bigNum2), ONE_ETHER, 0, [
         {
-          index: nearestUsableTick(TickMath.MIN_TICK, TICK_SPACINGS[FeeAmount.LOW]),
+          index: nearestUsableTick(TickMath.MIN_TICK, TICK_SPACINGS[FeeAmount.FIVE]),
           liquidityNet: ONE_ETHER,
           liquidityGross: ONE_ETHER,
         },
         {
-          index: nearestUsableTick(TickMath.MAX_TICK, TICK_SPACINGS[FeeAmount.LOW]),
+          index: nearestUsableTick(TickMath.MAX_TICK, TICK_SPACINGS[FeeAmount.FIVE]),
           liquidityNet: JSBI.multiply(ONE_ETHER, NEGATIVE_ONE),
           liquidityGross: ONE_ETHER,
         },

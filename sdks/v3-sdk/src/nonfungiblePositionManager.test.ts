@@ -9,7 +9,7 @@ describe('NonfungiblePositionManager', () => {
   const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0', 'token0')
   const token1 = new Token(1, '0x0000000000000000000000000000000000000002', 18, 't1', 'token1')
 
-  const fee = FeeAmount.MEDIUM
+  const fee = FeeAmount.THIRTY
 
   const pool_0_1 = new Pool(token0, token1, fee, encodeSqrtRatioX96(1, 1), 0, 0, [])
   const pool_1_weth = new Pool(token1, WETH9[1], fee, encodeSqrtRatioX96(1, 1), 0, 0, [])
@@ -37,8 +37,8 @@ describe('NonfungiblePositionManager', () => {
         NonfungiblePositionManager.addCallParameters(
           new Position({
             pool: pool_0_1,
-            tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-            tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+            tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+            tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
             liquidity: 0,
           }),
           { recipient, slippageTolerance, deadline }
@@ -51,8 +51,8 @@ describe('NonfungiblePositionManager', () => {
         NonfungiblePositionManager.addCallParameters(
           new Position({
             pool: pool_0_1,
-            tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-            tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+            tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+            tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
             liquidity: 1,
           }),
           { recipient, slippageTolerance, deadline, useNative: Ether.onChain(1) }
@@ -64,8 +64,8 @@ describe('NonfungiblePositionManager', () => {
       const { calldata, value } = NonfungiblePositionManager.addCallParameters(
         new Position({
           pool: pool_0_1,
-          tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-          tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+          tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+          tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
           liquidity: 1,
         }),
         { recipient, slippageTolerance, deadline }
@@ -81,8 +81,8 @@ describe('NonfungiblePositionManager', () => {
       const { calldata, value } = NonfungiblePositionManager.addCallParameters(
         new Position({
           pool: pool_0_1,
-          tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-          tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+          tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+          tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
           liquidity: 1,
         }),
         { tokenId, slippageTolerance, deadline }
@@ -98,8 +98,8 @@ describe('NonfungiblePositionManager', () => {
       const { calldata, value } = NonfungiblePositionManager.addCallParameters(
         new Position({
           pool: pool_0_1,
-          tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-          tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+          tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+          tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
           liquidity: 1,
         }),
         { recipient, slippageTolerance, deadline, createPool: true }
@@ -115,8 +115,8 @@ describe('NonfungiblePositionManager', () => {
       const { calldata, value } = NonfungiblePositionManager.addCallParameters(
         new Position({
           pool: pool_1_weth,
-          tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-          tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+          tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+          tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
           liquidity: 1,
         }),
         { recipient, slippageTolerance, deadline, useNative: Ether.onChain(1) }
@@ -165,8 +165,8 @@ describe('NonfungiblePositionManager', () => {
         NonfungiblePositionManager.removeCallParameters(
           new Position({
             pool: pool_0_1,
-            tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-            tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+            tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+            tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
             liquidity: 0,
           }),
           {
@@ -189,8 +189,8 @@ describe('NonfungiblePositionManager', () => {
         NonfungiblePositionManager.removeCallParameters(
           new Position({
             pool: pool_0_1,
-            tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-            tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+            tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+            tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
             liquidity: 50,
           }),
           {
@@ -213,8 +213,8 @@ describe('NonfungiblePositionManager', () => {
         NonfungiblePositionManager.removeCallParameters(
           new Position({
             pool: pool_0_1,
-            tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-            tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+            tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+            tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
             liquidity: 50,
           }),
           {
@@ -237,8 +237,8 @@ describe('NonfungiblePositionManager', () => {
       const { calldata, value } = NonfungiblePositionManager.removeCallParameters(
         new Position({
           pool: pool_0_1,
-          tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-          tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+          tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+          tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
           liquidity: 100,
         }),
         {
@@ -264,8 +264,8 @@ describe('NonfungiblePositionManager', () => {
       const { calldata, value } = NonfungiblePositionManager.removeCallParameters(
         new Position({
           pool: pool_0_1,
-          tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-          tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+          tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+          tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
           liquidity: 100,
         }),
         {
@@ -294,8 +294,8 @@ describe('NonfungiblePositionManager', () => {
       const { calldata, value } = NonfungiblePositionManager.removeCallParameters(
         new Position({
           pool: pool_1_weth,
-          tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-          tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+          tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+          tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
           liquidity: 100,
         }),
         {
@@ -324,8 +324,8 @@ describe('NonfungiblePositionManager', () => {
       const { calldata, value } = NonfungiblePositionManager.removeCallParameters(
         new Position({
           pool: pool_1_weth,
-          tickLower: -TICK_SPACINGS[FeeAmount.MEDIUM],
-          tickUpper: TICK_SPACINGS[FeeAmount.MEDIUM],
+          tickLower: -TICK_SPACINGS[FeeAmount.THIRTY],
+          tickUpper: TICK_SPACINGS[FeeAmount.THIRTY],
           liquidity: 100,
         }),
         {

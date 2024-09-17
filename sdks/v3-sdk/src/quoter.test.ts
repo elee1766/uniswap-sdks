@@ -9,7 +9,7 @@ describe('SwapQuoter', () => {
   const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0', 'token0')
   const token1 = new Token(1, '0x0000000000000000000000000000000000000002', 18, 't1', 'token1')
 
-  const feeAmount = FeeAmount.MEDIUM
+  const feeAmount = FeeAmount.THIRTY
   const sqrtRatioX96 = encodeSqrtRatioX96(1, 1)
   const liquidity = 1_000_000
   const WETH = WETH9[1]

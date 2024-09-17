@@ -12,7 +12,7 @@ describe('#computePoolAddress', () => {
     const tokenB = new Token(1, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
     const result = computePoolAddress({
       factoryAddress,
-      fee: FeeAmount.LOW,
+      fee: FeeAmount.FIVE,
       tokenA,
       tokenB,
     })
@@ -27,7 +27,7 @@ describe('#computePoolAddress', () => {
     let tokenB = DAI
     const resultA = computePoolAddress({
       factoryAddress,
-      fee: FeeAmount.LOW,
+      fee: FeeAmount.FIVE,
       tokenA,
       tokenB,
     })
@@ -37,7 +37,7 @@ describe('#computePoolAddress', () => {
     tokenB = USDC
     const resultB = computePoolAddress({
       factoryAddress,
-      fee: FeeAmount.LOW,
+      fee: FeeAmount.FIVE,
       tokenA,
       tokenB,
     })
@@ -52,7 +52,7 @@ describe('#computePoolAddress', () => {
     let tokenB = WETH
     const salt = solKeccak256(
       ['bytes'],
-      [defaultAbiCoder.encode(['address', 'address', 'uint24'], [tokenA.address, tokenB.address, FeeAmount.MEDIUM])]
+      [defaultAbiCoder.encode(['address', 'address', 'uint24'], [tokenA.address, tokenB.address, FeeAmount.THIRTY])]
     )
     const zkaddress = computeZksyncCreate2Address(
       '0x8FdA5a7a8dCA67BBcDd10F02Fa0649A937215422',

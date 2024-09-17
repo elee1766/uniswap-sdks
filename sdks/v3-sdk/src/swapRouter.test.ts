@@ -14,7 +14,7 @@ describe('SwapRouter', () => {
   const token2 = new Token(1, '0x0000000000000000000000000000000000000003', 18, 't2', 'token2')
   const token3 = new Token(1, '0x0000000000000000000000000000000000000004', 18, 't3', 'token3')
 
-  const feeAmount = FeeAmount.MEDIUM
+  const feeAmount = FeeAmount.THIRTY
   const sqrtRatioX96 = encodeSqrtRatioX96(1, 1)
   const liquidity = 1_000_000
   const WETH = WETH9[1]

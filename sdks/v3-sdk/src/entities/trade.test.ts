@@ -18,7 +18,7 @@ describe('Trade', () => {
   function v2StylePool(
     reserve0: CurrencyAmount<Token>,
     reserve1: CurrencyAmount<Token>,
-    feeAmount: FeeAmount = FeeAmount.MEDIUM
+    feeAmount: FeeAmount = FeeAmount.THIRTY
   ) {
     const sqrtRatioX96 = encodeSqrtRatioX96(reserve1.quotient, reserve0.quotient)
     const liquidity = sqrt(JSBI.multiply(reserve0.quotient, reserve1.quotient))

@@ -10,7 +10,7 @@ describe('Staker', () => {
   const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0', 'token0')
   const token1 = new Token(1, '0x0000000000000000000000000000000000000002', 18, 't1', 'token1')
 
-  const pool_0_1 = new Pool(token0, token1, FeeAmount.MEDIUM, encodeSqrtRatioX96(1, 1), 0, 0, [])
+  const pool_0_1 = new Pool(token0, token1, FeeAmount.THIRTY, encodeSqrtRatioX96(1, 1), 0, 0, [])
 
   const incentiveKey = {
     rewardToken: reward,

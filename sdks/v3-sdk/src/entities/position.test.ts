@@ -12,8 +12,8 @@ describe('Position', () => {
   const DAI = new Token(1, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
   const POOL_SQRT_RATIO_START = encodeSqrtRatioX96(100e6, 100e18)
   const POOL_TICK_CURRENT = TickMath.getTickAtSqrtRatio(POOL_SQRT_RATIO_START)
-  const TICK_SPACING = TICK_SPACINGS[FeeAmount.LOW]
-  const DAI_USDC_POOL = new Pool(DAI, USDC, FeeAmount.LOW, POOL_SQRT_RATIO_START, 0, POOL_TICK_CURRENT, [])
+  const TICK_SPACING = TICK_SPACINGS[FeeAmount.FIVE]
+  const DAI_USDC_POOL = new Pool(DAI, USDC, FeeAmount.FIVE, POOL_SQRT_RATIO_START, 0, POOL_TICK_CURRENT, [])
 
   it('can be constructed around 0 tick', () => {
     const position = new Position({
@@ -265,7 +265,7 @@ describe('Position', () => {
 
       it('is correct for pool at min price', () => {
         const position = new Position({
-          pool: new Pool(DAI, USDC, FeeAmount.LOW, TickMath.MIN_SQRT_RATIO, 0, TickMath.MIN_TICK, []),
+          pool: new Pool(DAI, USDC, FeeAmount.FIVE, TickMath.MIN_SQRT_RATIO, 0, TickMath.MIN_TICK, []),
           liquidity: 100e18,
           tickLower: nearestUsableTick(POOL_TICK_CURRENT, TICK_SPACING) + TICK_SPACING,
           tickUpper: nearestUsableTick(POOL_TICK_CURRENT, TICK_SPACING) + TICK_SPACING * 2,
@@ -281,7 +281,7 @@ describe('Position', () => {
           pool: new Pool(
             DAI,
             USDC,
-            FeeAmount.LOW,
+            FeeAmount.FIVE,
             JSBI.subtract(TickMath.MAX_SQRT_RATIO, JSBI.BigInt(1)),
             0,
             TickMath.MAX_TICK - 1,
@@ -388,7 +388,7 @@ describe('Position', () => {
 
       it('is correct for pool at min price', () => {
         const position = new Position({
-          pool: new Pool(DAI, USDC, FeeAmount.LOW, TickMath.MIN_SQRT_RATIO, 0, TickMath.MIN_TICK, []),
+          pool: new Pool(DAI, USDC, FeeAmount.FIVE, TickMath.MIN_SQRT_RATIO, 0, TickMath.MIN_TICK, []),
           liquidity: 100e18,
           tickLower: nearestUsableTick(POOL_TICK_CURRENT, TICK_SPACING) + TICK_SPACING,
           tickUpper: nearestUsableTick(POOL_TICK_CURRENT, TICK_SPACING) + TICK_SPACING * 2,
@@ -404,7 +404,7 @@ describe('Position', () => {
           pool: new Pool(
             DAI,
             USDC,
-            FeeAmount.LOW,
+            FeeAmount.FIVE,
             JSBI.subtract(TickMath.MAX_SQRT_RATIO, JSBI.BigInt(1)),
             0,
             TickMath.MAX_TICK - 1,
