@@ -2187,12 +2187,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gfxlabs/oku-chains@npm:1.1.74":
-  version: 1.1.74
-  resolution: "@gfxlabs/oku-chains@npm:1.1.74"
+"@gfxlabs/oku-chains@npm:1.1.104":
+  version: 1.1.104
+  resolution: "@gfxlabs/oku-chains@npm:1.1.104"
   peerDependencies:
     viem: 2.x
-  checksum: a3d0624f3bec56dfd7dc9c1f4c74e5e9bbbd60ad6da93dd5588ce28ded1875e3d0d4d4ca6a4f8b3d1311c0cdbdc68bcf1702f1a229f5a159a6fededca828e2a3
+  checksum: 80276e40cc4043edcc115cdc71eb84bcc4b187a7b4510565a96c34e10dbd4c89b11876eac08fba3e830478a890128289bd14a706941ae1e23b453fa99856d7bd
   languageName: node
   linkType: hard
 
@@ -4663,7 +4663,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@uniswap/permit2-sdk@workspace:sdks/permit2-sdk"
   dependencies:
-    "@gfxlabs/oku-chains": 1.1.74
+    "@gfxlabs/oku-chains": 1.1.104
     "@types/jest": ^24.0.25
     ethers: ^5.7.0
     prettier: ^2.4.1
@@ -4726,6 +4726,7 @@ __metadata:
     "@ethersproject/bytes": ^5.7.0
     "@ethersproject/keccak256": 5.7.0
     "@ethersproject/strings": 5.7.0
+    "@gfxlabs/oku-chains": 1.1.104
     "@types/big.js": ^4.0.5
     "@types/jest": ^24.0.25
     big.js: ^5.2.2
@@ -4786,7 +4787,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@uniswap/universal-router-sdk@workspace:sdks/universal-router-sdk"
   dependencies:
-    "@gfxlabs/oku-chains": 1.1.74
+    "@gfxlabs/oku-chains": 1.1.104
     "@types/chai": ^4.3.3
     "@types/mocha": ^9.1.1
     "@types/node": ^18.7.16

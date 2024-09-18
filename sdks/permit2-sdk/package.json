@@ -21,7 +21,7 @@
     "test": "tsdx test --testPathIgnorePatterns=/permit2/"
   },
   "dependencies": {
-    "@gfxlabs/oku-chains": "1.1.74",
+    "@gfxlabs/oku-chains": "1.1.104",
     "ethers": "^5.7.0",
     "tiny-invariant": "^1.1.0",
     "viem": "2.18.0"
